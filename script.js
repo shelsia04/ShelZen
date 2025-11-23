@@ -14,7 +14,6 @@ let badges = JSON.parse(localStorage.getItem("badges")) || [];
 let weekData = JSON.parse(localStorage.getItem("weekData")) || [0,0,0,0,0,0,0];
 
 /* ======================= DOM REFS ======================= */
-const brandTitle = document.getElementById("brandTitle");
 const greetingElement = document.getElementById("greeting");
 const quoteBox = document.getElementById("quote");
 const levelEl = document.getElementById("level");
@@ -61,27 +60,21 @@ const aestheticQuotes = [
 
 function setGreeting() {
     const greet = greetings[Math.floor(Math.random() * greetings.length)];
-    greetingElement.textContent = greet;  // plain text, bold via CSS
+    greetingElement.textContent = greet;
 
-    // Pick a random quote each time
     const quote = aestheticQuotes[Math.floor(Math.random() * aestheticQuotes.length)];
     quoteBox.textContent = `"${quote}"`;
-
-    greetingAnimation(); // animation still runs on greeting, but now opacity starts visible
 }
 
-
-
-// Rotate quotes every few seconds
+// Rotate quotes every 5s
 function updateQuote() {
-    quoteBox.innerHTML = `"${aestheticQuotes[Math.floor(Math.random() * aestheticQuotes.length)]}"`;
+    quoteBox.textContent = `"${aestheticQuotes[Math.floor(Math.random() * aestheticQuotes.length)]}"`;
 }
 
-// Initialize greeting and start rotating quotes
 document.addEventListener("DOMContentLoaded", () => {
     setGreeting();
     updateQuote();
-    setInterval(updateQuote, 5000); // change quote every 5s
+    setInterval(updateQuote, 5000);
 });
 
 /* ======================= UTILITIES ======================= */
@@ -161,6 +154,7 @@ function render(){
   updateStreakVisual();
 }
 
+/* ======================= MARK TASK DONE ======================= */
 taskList.addEventListener("click", (ev) => {
   const btn = ev.target.closest("button[data-idx]");
   if(!btn) return;
@@ -211,17 +205,19 @@ achClose.addEventListener("click", ()=> {
   playSound(SOUND.achievement);
 });
 
-/* ======================= REMINDERS ======================= */
+/* ======================= REMINDERS (30 MIN BEFORE) ======================= */
+const REMINDER_BEFORE = 30 * 60 * 1000; // 30 minutes
+
 const reminderQuotes = [
-  "⏳ Discipline check — task missed. Return and win.",
-  "⏳ Gentle nudge: you planned this. Keep the promise.",
-  "⏳ Queens don’t postpone greatness — finish it."
+  "⏳ Discipline check — task coming soon. Prepare yourself.",
+  "⏳ Gentle nudge: your task is due in 30 minutes.",
+  "⏳ Queens don’t postpone greatness — finish it on time."
 ];
 
 setInterval(()=> {
   const now = Date.now();
   tasks.forEach(t => {
-    if(!t.completedAt && !t.reminderNotified && now > t.deadlineTs){
+    if(!t.completedAt && !t.reminderNotified && (t.deadlineTs - now <= REMINDER_BEFORE)){
       const r = reminderQuotes[Math.floor(Math.random()*reminderQuotes.length)];
       const box = document.createElement("div");
       box.className = "reminder";
