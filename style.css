@@ -287,30 +287,63 @@ main.shell {
     font-size: 0.9rem;
 }
 
-/* ======================= MOBILE RESPONSIVE ======================= */
+/* ======================= MOBILE FIX: STACK PANELS ======================= */
 @media (max-width: 420px) {
+    /* Make panels stack vertically */
+    .panel {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Make left and right panel full width */
+    .panel-left, .panel-right {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        margin-bottom: 20px; /* space between panels */
+    }
+
+    /* Weekly progress chart fits screen */
+    #weekChart {
+        width: 100% !important;
+        height: 160px !important;
+    }
+
+    /* Align streak and badges center */
+    #streakFlame, .badges {
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    /* Reduce arc-wrap size */
+    .arc-wrap {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    /* Header text */
     .title-block h2.greet {
-        font-size: 2rem;
-        text-align: center;
+        font-size: 2rem !important;
+        text-align: center !important;
     }
     .title-block blockquote.quote {
-        font-size: 1rem;
-        text-align: center;
+        font-size: 1rem !important;
+        text-align: center !important;
     }
-    .panel-left, .panel-right {
-        flex: 1 1 100%;
-        width: 95%;
-    }
+
+    /* Tasks */
     .task-row {
-        width: 95%;
+        width: 95% !important;
+        flex-direction: column !important;
+        text-align: center !important;
     }
+
+    /* Modals and popups */
     .modal-card, .popup-card {
-        width: 95%;
-    }
-    .arc-wrap {
-        width: 100px;
-        height: 100px;
+        width: 95% !important;
     }
 }
+
+
 
 
