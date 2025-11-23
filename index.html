@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rose Quartz Luxury Dashboard</title>
+
+  <!-- Fonts: Playfair Display + Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Chart.js + Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="shell">
+
+    <!-- HEADER -->
+    <header class="topbar glass">
+      <div class="title-block">
+        <h2 id="greeting" class="greet">Hey Shelsia ✨</h2>
+        <blockquote id="quote" class="quote">"Soft life requires hard discipline."</blockquote>
+      </div>
+      <div class="status-block">
+        <div id="level" class="pill">Level: 1</div>
+        <div id="streak" class="pill muted">Streak: 0d</div>
+      </div>
+    </header>
+
+    <!-- MAIN PANEL -->
+    <section class="panel glass">
+      <div class="panel-left">
+        <h2 class="panel-title">Today's Progress</h2>
+
+        <div class="arc-wrap">
+          <svg viewBox="0 0 100 100" class="progress-arc" aria-hidden>
+            <circle cx="50" cy="50" r="40" class="arc-bg"></circle>
+            <circle id="arcFill" cx="50" cy="50" r="40" class="arc-fg"></circle>
+          </svg>
+          <div class="arc-label">
+            <div id="progressPercent">0%</div>
+            <div class="small muted">Completed on-time</div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="openAdd" class="btn primary">+ Create Today's Task</button>
+          <button id="resetBtn" class="btn ghost">Reset All</button>
+        </div>
+      </div>
+
+      <div class="panel-right">
+        <h3>Habit Streak</h3>
+        <div id="streakFlame" class="streak-visual">⚪</div>
+
+        <h3 style="margin-top:18px">Weekly Progress</h3>
+        <canvas id="weekChart" width="320" height="160"></canvas>
+
+        <h3 style="margin-top:18px">Badges</h3>
+        <div id="badgeContainer" class="badges"></div>
+      </div>
+    </section>
+
+    <!-- TASKS SECTION -->
+    <section class="tasks glass">
+      <h2>Tasks for Today</h2>
+      <div id="taskList" class="task-list"></div>
+    </section>
+
+    <!-- MODAL: ADD TASK -->
+    <div id="modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card glass" role="dialog" aria-modal="true">
+        <h3>Add Today's Task</h3>
+        <label>Task name</label>
+        <input id="modalTaskName" placeholder="e.g. Lunch" />
+        <label style="margin-top:10px">Deadline (time of day)</label>
+        <input id="modalDeadline" type="time" />
+        <div class="modal-actions">
+          <button id="modalCancel" class="btn ghost">Cancel</button>
+          <button id="modalSave" class="btn primary">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- POPUP: COMPLETION/BADGE -->
+    <div id="popup" class="popup hidden" aria-hidden="true">
+      <div class="popup-card glass">
+        <h3 id="popupTitle">Well done</h3>
+        <p id="popupBody">You honored the promise to yourself today.</p>
+        <div class="popup-actions">
+          <button id="achClose" class="btn primary">Awesome</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
