@@ -272,3 +272,58 @@ body {
     }
 }
 
+body, main.shell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* top alignment with padding */
+    width: 100%;
+}
+
+.topbar, .panel, .tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel-left, .panel-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task-row {
+    justify-content: center;  /* center text and buttons */
+    flex-direction: column;   /* stack name + button */
+    text-align: center;
+}
+
+.task-row button {
+    margin-top: 6px; /* spacing between text and button */
+}
+
+@media (max-width: 420px) {
+    .panel-left, .panel-right {
+        flex: 1 1 100%;
+        width: 95%;
+    }
+    .title-block h2.greet {
+        font-size: 2rem;
+        text-align: center;
+    }
+    blockquote.quote {
+        font-size: 1rem;
+        text-align: center;
+    }
+    .task-row {
+        width: 100%;
+    }
+    .modal-card, .popup-card {
+        width: 95%;
+    }
+    .arc-wrap {
+        width: 100px;
+        height: 100px;
+    }
+}
