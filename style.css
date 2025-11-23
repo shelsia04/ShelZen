@@ -1,4 +1,4 @@
-/* ========== GLOBAL ========== */
+/* ======================= GLOBAL ======================= */
 html, body {
     height: 100%;
     margin: 0;
@@ -15,7 +15,15 @@ body {
     box-sizing: border-box;
 }
 
-/* ========== GLASS EFFECT ========== */
+main.shell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+/* ======================= GLASS EFFECT ======================= */
 .glass {
     backdrop-filter: blur(12px) saturate(180%);
     -webkit-backdrop-filter: blur(12px) saturate(180%);
@@ -24,22 +32,23 @@ body {
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-/* ========== HEADER ========== */
+/* ======================= HEADER ======================= */
 .topbar {
     width: 90%;
     max-width: 900px;
     margin: 30px auto 20px auto;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 18px 24px;
-    flex-wrap: wrap;
+    text-align: center;
 }
 
 .title-block h2.greet {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
-    font-weight: 900; /* extra bold */
+    font-weight: 900;
     color: #5a3e36;
     margin: 0;
     line-height: 1.2;
@@ -55,14 +64,21 @@ body {
     word-break: break-word;
 }
 
-/* ========== STATUS PILLS ========== */
+/* ======================= STATUS PILLS ======================= */
+.status-block {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .pill {
     padding: 6px 12px;
     border-radius: 12px;
     font-weight: 600;
     background: #ffd7e0;
     color: #4b3f36;
-    margin-left: 8px;
 }
 
 .pill.muted {
@@ -70,29 +86,36 @@ body {
     color: #6e584b;
 }
 
-/* ========== PANEL ========== */
+/* ======================= PANEL ======================= */
 .panel {
     width: 90%;
     max-width: 900px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto 25px auto;
     padding: 20px;
     gap: 20px;
-    flex-wrap: wrap;
 }
 
 .panel-left, .panel-right {
-    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 100%;
+    width: 100%;
 }
 
 .panel-title {
     font-weight: 700;
     font-size: 1.5rem;
     margin-bottom: 12px;
+    text-align: center;
 }
 
-/* ========== PROGRESS ARC ========== */
+/* ======================= PROGRESS ARC ======================= */
 .arc-wrap {
     position: relative;
     width: 120px;
@@ -134,42 +157,43 @@ body {
     color: #7b5e4d;
 }
 
-/* ========== TASKS ========== */
+/* ======================= TASKS ======================= */
 .tasks {
     width: 90%;
     max-width: 900px;
     margin: 0 auto 50px auto;
     padding: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .task-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    width: 100%;
 }
 
 .task-row {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 14px 18px;
     border-radius: 14px;
     background: rgba(255,255,255,0.55);
     box-shadow: 0 6px 14px rgba(0,0,0,0.06);
     transition: transform 0.2s;
     word-break: break-word;
+    text-align: center;
 }
 
-.task-row:hover {
-    transform: translateY(-2px);
+.task-row button {
+    margin-top: 6px;
 }
 
-.task-row .meta {
-    font-size: 0.85rem;
-    color: #7b5e4d;
-}
-
-/* ========== BUTTONS ========== */
+/* ======================= BUTTONS ======================= */
 .btn.primary {
     background: linear-gradient(135deg, #f497c1, #ffd7e0);
     color: #4b3f36;
@@ -177,6 +201,7 @@ body {
     font-weight: 600;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    text-align: center;
 }
 
 .btn.primary:hover:not([disabled]) {
@@ -194,7 +219,7 @@ body {
     background: rgba(244,151,193,0.1);
 }
 
-/* ========== MODAL ========== */
+/* ======================= MODAL ======================= */
 .modal {
     position: fixed;
     top:0; left:0;
@@ -214,9 +239,10 @@ body {
     display:flex;
     flex-direction: column;
     gap: 12px;
+    align-items: center;
 }
 
-/* ========== POPUP ========== */
+/* ======================= POPUP ======================= */
 .popup {
     position: fixed;
     bottom: 20px;
@@ -230,94 +256,53 @@ body {
     flex-direction: column;
     gap: 8px;
     z-index: 999;
+    text-align: center;
 }
 
-.popup-card h3 {
-    font-weight: 700;
-    color: #5a3e36;
+.popup-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.popup-card p {
-    font-size: 0.95rem;
-    color: #7b5e4d;
-}
-
-/* ========== STREAK & BADGES ========== */
+/* ======================= STREAK & BADGES ======================= */
 #streakFlame {
     font-size: 1.3rem;
+    text-align: center;
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 6px;
 }
 
 .badges span {
     background: #f497c1;
     padding: 5px 10px;
     border-radius: 12px;
-    margin-right: 6px;
     font-weight: 600;
     font-size: 0.9rem;
 }
 
-/* ========== MOBILE RESPONSIVE ========== */
+/* ======================= MOBILE RESPONSIVE ======================= */
 @media (max-width: 420px) {
-    .panel-left, .panel-right {
-        flex: 1 1 100%;
-    }
-    .title-block h2.greet {
-        font-size: 2rem;
-    }
-    blockquote.quote {
-        font-size: 1rem;
-    }
-    .modal-card, .popup-card {
-        width: 95%;
-    }
-}
-
-body, main.shell {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* top alignment with padding */
-    width: 100%;
-}
-
-.topbar, .panel, .tasks {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.panel-left, .panel-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.task-row {
-    justify-content: center;  /* center text and buttons */
-    flex-direction: column;   /* stack name + button */
-    text-align: center;
-}
-
-.task-row button {
-    margin-top: 6px; /* spacing between text and button */
-}
-
-@media (max-width: 420px) {
-    .panel-left, .panel-right {
-        flex: 1 1 100%;
-        width: 95%;
-    }
     .title-block h2.greet {
         font-size: 2rem;
         text-align: center;
     }
-    blockquote.quote {
+    .title-block blockquote.quote {
         font-size: 1rem;
         text-align: center;
+    }
+    .panel-left, .panel-right {
+        flex: 1 1 100%;
+        width: 95%;
     }
     .task-row {
-        width: 100%;
+        width: 95%;
     }
     .modal-card, .popup-card {
         width: 95%;
@@ -327,3 +312,5 @@ body, main.shell {
         height: 100px;
     }
 }
+
+
