@@ -1,0 +1,255 @@
+/* ========== GLOBAL ========== */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fde2e2, #ffd7e0);
+    color: #4b3f36;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: 0.3s all;
+}
+
+/* ========== GLASS EFFECT ========== */
+.glass {
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.55);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* ========== HEADER ========== */
+.topbar {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+}
+
+.title-block h2.greet {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #5a3e36;
+}
+
+.title-block blockquote.quote {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #6e584b;
+    margin-top: 6px;
+}
+
+/* ========== STATUS PILLS ========== */
+.pill {
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    background: #ffd7e0;
+    color: #4b3f36;
+    margin-left: 8px;
+}
+
+.pill.muted {
+    background: #f9d9df;
+    color: #6e584b;
+}
+
+/* ========== PANEL ========== */
+.panel {
+    width: 90%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto 25px auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.panel-left, .panel-right {
+    flex: 1;
+}
+
+.panel-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+/* ========== PROGRESS ARC ========== */
+.arc-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+}
+
+.progress-arc {
+    width: 100%;
+    height: 100%;
+}
+
+.arc-bg {
+    fill: none;
+    stroke: #f4d8e0;
+    stroke-width: 12;
+}
+
+.arc-fg {
+    fill: none;
+    stroke: #f497c1;
+    stroke-width: 12;
+    stroke-linecap: round;
+    stroke-dasharray: 251.2;
+    stroke-dashoffset: 251.2;
+    transition: stroke-dashoffset 0.6s ease;
+}
+
+.arc-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.arc-label .small {
+    font-size: 0.85rem;
+    color: #7b5e4d;
+}
+
+/* ========== TASKS ========== */
+.tasks {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    padding: 18px;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.55);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+}
+
+.task-row:hover {
+    transform: translateY(-2px);
+}
+
+.task-row .meta {
+    font-size: 0.85rem;
+    color: #7b5e4d;
+}
+
+/* ========== BUTTONS ========== */
+.btn.primary {
+    background: linear-gradient(135deg, #f497c1, #ffd7e0);
+    color: #4b3f36;
+    padding: 8px 16px;
+    font-weight: 600;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+.btn.primary:hover:not([disabled]) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+.btn.ghost {
+    background: transparent;
+    color: #6e584b;
+    border: 2px solid #f497c1;
+}
+
+.btn.ghost:hover {
+    background: rgba(244,151,193,0.1);
+}
+
+/* ========== MODAL ========== */
+.modal {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index: 999;
+}
+
+.modal.hidden { display: none; }
+
+.modal-card {
+    width: 90%;
+    max-width: 400px;
+    padding: 22px;
+    display:flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ========== POPUP ========== */
+.popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 280px;
+    background: rgba(255,255,255,0.85);
+    padding: 16px 20px;
+    border-radius: 14px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 999;
+}
+
+.popup-card h3 {
+    font-weight: 700;
+    color: #5a3e36;
+}
+
+.popup-card p {
+    font-size: 0.95rem;
+    color: #7b5e4d;
+}
+
+/* ========== STREAK & BADGES ========== */
+#streakFlame {
+    font-size: 1.3rem;
+}
+
+.badges span {
+    background: #f497c1;
+    padding: 5px 10px;
+    border-radius: 12px;
+    margin-right: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
