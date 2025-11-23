@@ -66,7 +66,6 @@ function setGreeting() {
     quoteBox.textContent = `"${quote}"`;
 }
 
-// Rotate quotes every 5s
 function updateQuote() {
     quoteBox.textContent = `"${aestheticQuotes[Math.floor(Math.random() * aestheticQuotes.length)]}"`;
 }
@@ -106,7 +105,14 @@ modalSave.addEventListener("click", ()=> {
   const now = new Date();
   const deadline = new Date(now.getFullYear(), now.getMonth(), now.getDate(), parts[0], parts[1] || 0, 0, 0).getTime();
 
-  tasks.push({ id: Date.now(), name, deadlineTs: deadline, reminderNotified:false, completedAt:null, completedOnTime:false });
+  tasks.push({ 
+    id: Date.now(), 
+    name, 
+    deadlineTs: deadline, 
+    reminderNotified:false, 
+    completedAt:null, 
+    completedOnTime:false 
+  });
   modal.classList.add("hidden");
   saveAll();
   render();
@@ -138,8 +144,11 @@ function render(){
 
     const row = document.createElement("div");
     row.className = "task-row";
+    row.style.display = "flex";
+    row.style.justifyContent = "space-between";
+    row.style.alignItems = "center";
     row.innerHTML = `
-      <div>
+      <div style="text-align:center;">
         <div style="font-weight:700">${t.name}</div>
         <div class="meta">${timeLabel} • ${new Date(t.deadlineTs).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</div>
       </div>
@@ -207,7 +216,6 @@ achClose.addEventListener("click", ()=> {
 
 /* ======================= REMINDERS (30 MIN BEFORE) ======================= */
 const REMINDER_BEFORE = 30 * 60 * 1000; // 30 minutes
-
 const reminderQuotes = [
   "⏳ Discipline check — task coming soon. Prepare yourself.",
   "⏳ Gentle nudge: your task is due in 30 minutes.",
@@ -219,13 +227,28 @@ setInterval(()=> {
   tasks.forEach(t => {
     if(!t.completedAt && !t.reminderNotified && (t.deadlineTs - now <= REMINDER_BEFORE)){
       const r = reminderQuotes[Math.floor(Math.random()*reminderQuotes.length)];
+
+      // Create reminder box in center
       const box = document.createElement("div");
       box.className = "reminder";
+      box.style.position = "fixed";
+      box.style.top = "50%";
+      box.style.left = "50%";
+      box.style.transform = "translate(-50%, -50%)";
+      box.style.padding = "20px 28px";
+      box.style.background = "rgba(255, 220, 230, 0.95)";
+      box.style.borderRadius = "16px";
+      box.style.boxShadow = "0 6px 18px rgba(0,0,0,0.12)";
+      box.style.textAlign = "center";
+      box.style.zIndex = "999";
+      box.style.fontWeight = "600";
       box.innerText = r;
+
       document.body.appendChild(box);
+      playSound(SOUND.reminder);
+
       setTimeout(()=> box.remove(), 7000);
 
-      playSound(SOUND.reminder);
       t.reminderNotified = true;
       saveAll();
       render();
@@ -233,7 +256,7 @@ setInterval(()=> {
   });
 }, 60 * 1000);
 
-/* ======================= MIDNIGHT EVALUATION & AUTO-CLEAR ======================= */
+/* ======================= MIDNIGHT CHECK & AUTO-CLEAR ======================= */
 function scheduleMidnightCheck(){
   const now = new Date();
   const next = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 0, 0, 5, 0);
@@ -325,6 +348,4 @@ function updateStreakVisual(){
   else streakFlame.textContent = "👑🔥🔥";
 }
 
-/* ======================= NOTE ======================= */
-/* Browser audio may be blocked until you interact with the page.
-   Click 'Create Today's Task' or any button once after opening to unlock sounds. */
+
